@@ -192,7 +192,7 @@ class LanguageValidator
     ];
 
     /**
-     * @param $code ISO-639 language code
+     * @param string $code ISO-639 language code
      * @return bool
      */
     public static function isValid($code): bool
