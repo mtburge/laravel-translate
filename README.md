@@ -3,8 +3,6 @@
 ![Build](https://img.shields.io/travis/itsmattburgess/laravel-translate.svg)
 ![Code Quality](https://img.shields.io/scrutinizer/g/itsmattburgess/laravel-translate.svg)
 ![Coverage](https://img.shields.io/scrutinizer/coverage/g/itsmattburgess/laravel-translate.svg)
-![Downloads](http://img.shields.io/packagist/dm/itsmattburgess/laravel-translate.svg)
-![Version](http://img.shields.io/packagist/v/itsmattburgess/laravel-translate.svg)
 
 Easily translate your laravel application using cloud translation APIs. This package finds all of your `__()` and `trans()`
 methods in your `app/` and `resources/` directories and translates each string using the API. Online translation APIs aren't
