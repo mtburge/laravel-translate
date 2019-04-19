@@ -3,8 +3,7 @@
 namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use itsmattburgess\LaravelTranslate\Contracts\InvalidLanguageCode;
 
 class TranslateCommand extends Command
 {
@@ -29,11 +28,16 @@ class TranslateCommand extends Command
      * @param Translator $translator
      * @param Publisher $publisher
      * @return mixed
+     * @throws InvalidLanguageCode
      */
     public function handle(MethodDiscovery $discovery, Translator $translator, Publisher $publisher)
     {
         $requireTranslation = $discovery->discover();
         $languages = config('translate.targetLanguages');
+
+        $this->validateLanguageCodes($languages);
+
+        $this->info('Translating ' . config('app.name') . ' into ' . count($languages) . ' languages (' . implode(', ', $languages) . ')');
 
         $bar = $this->output->createProgressBar(count($requireTranslation) * count($languages));
 
@@ -48,6 +52,18 @@ class TranslateCommand extends Command
         }
 
         $bar->finish();
+
+        $this->line('');
+        $this->line('');
         $this->info('Your translation files have been updated successfully.');
+    }
+
+    private function validateLanguageCodes($codes)
+    {
+        foreach ($codes as $language) {
+            if (! LanguageValidator::isValid($language)) {
+                throw new InvalidLanguageCode($language);
+            }
+        }
     }
 }

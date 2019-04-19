@@ -26,7 +26,7 @@ class MethodDiscovery
         foreach ($this->disk->allFiles($this->paths) as $file) {
             if (preg_match_all('/' . $this->regex() . '/imu', $file->getContents(), $matches)) {
                 foreach ($matches[2] as $match) {
-                    $strings[] = $match;
+                    $strings[] = trim(stripcslashes($match));
                 }
             }
         }
@@ -36,6 +36,13 @@ class MethodDiscovery
 
     private function regex()
     {
-        return '(trans|__)\([\'"]([\w\d\s\t\n\r:]+)[\'"](\)|(,\s*)(\[.+\])\))';
+        //return (trans|__)\(['"]([\w\d\s\t\n\r,.\'\\":]+)['"](\)|(,\s*)(\[.+\])\));
+
+        return '(trans|__)'
+            . '\([\'"]'
+            . '([\w\d\s\t\n\r,.\'\":\\\]+)'
+            . '[\'\"](\)'
+            . '|(,\s*)'
+            . '(\[.+\])\))';
     }
 }

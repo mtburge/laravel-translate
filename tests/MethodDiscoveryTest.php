@@ -45,7 +45,7 @@ class MethodDiscoveryTest extends TestCase
      */
     public function it_should_detect_double_underscore_methods()
     {
-        $this->assertContains('underscore', $this->discovery->discover());
+        $this->assertContains('You\'re seeing an underscore', $this->discovery->discover());
     }
 
     /**

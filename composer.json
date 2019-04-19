@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "ext-json"
+        "ext-json": "*",
+        "google/cloud-translate": "^1.2"
     },
     "require-dev": {
         "orchestra/testbench": "^3.5"
@@ -28,6 +29,13 @@
     "autoload-dev": {
         "psr-4": {
             "itsmattburgess\\LaravelTranslate\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "itsmattburgess\\LaravelTranslate\\TranslationServiceProvider"
+            ]
         }
     }
 }

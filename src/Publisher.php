@@ -21,9 +21,9 @@ class Publisher
 
         $currentTranslations = json_decode($this->disk->get($path), true);
 
-        $currentTranslations[$original] = $translated;
+        $currentTranslations[html_entity_decode($original, ENT_QUOTES)] = html_entity_decode($translated, ENT_QUOTES);
 
-        $this->disk->put($path, json_encode($currentTranslations, JSON_PRETTY_PRINT));
+        $this->disk->put($path, json_encode($currentTranslations, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
     }
 
     private function prepareFilesystem($path): void
