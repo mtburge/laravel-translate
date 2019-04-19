@@ -1,4 +1,11 @@
 # Laravel Translate
+
+![Build](https://img.shields.io/travis/itsmattburgess/laravel-translate.svg)
+![Code Quality](https://img.shields.io/scrutinizer/g/itsmattburgess/laravel-translate.svg)
+![Coverage](https://img.shields.io/scrutinizer/coverage/g/itsmattburgess/laravel-translate.svg)
+![Downloads](http://img.shields.io/packagist/dm/itsmattburgess/laravel-translate.svg)
+![Version](http://img.shields.io/packagist/v/itsmattburgess/laravel-translate.svg)
+
 Easily translate your laravel application using cloud translation APIs. This package finds all of your `__()` and `trans()`
 methods in your `app/` and `resources/` directories and translates each string using the API. Online translation APIs aren't
 perfect however, so its recommended that this package is used to give you a good starting point. Packages such as
@@ -24,8 +31,8 @@ be discovered in, and which languages you want to translate into.
 The package currently only supports the Google Translate API.
 
 To use the Google Translate API you need to set your API key. You can obtain an API key from your
-[Google Cloud Console](https://console.cloud.google.com/apis/api/translate.googleapis.com/credentials)
-. Once generated, add your key to your `.env` file.
+[Google Cloud Console](https://console.cloud.google.com/apis/api/translate.googleapis.com/credentials).
+Once generated, add your key to your `.env` file.
 ```
 GOOGLE_TRANSLATE_API_KEY=XXXXXX
 ```
