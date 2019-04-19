@@ -21,21 +21,16 @@
     "require-dev": {
         "orchestra/testbench": "^3.5"
     },
-    "autoload": {
-        "psr-4": {
-            "itsmattburgess\\LaravelTranslate\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "itsmattburgess\\LaravelTranslate\\Tests\\": "tests/"
-        }
-    },
     "extra": {
         "laravel": {
             "providers": [
                 "itsmattburgess\\LaravelTranslate\\TranslationServiceProvider"
             ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "itsmattburgess\\LaravelTranslate\\": "src/"
         }
     }
 }
