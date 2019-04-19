@@ -191,7 +191,11 @@ class LanguageValidator
         'zu' => 'Zulu'
     ];
 
-    public static function isValid($code)
+    /**
+     * @param $code ISO-639 language code
+     * @return bool
+     */
+    public static function isValid($code): bool
     {
         return array_key_exists($code, static::$codes);
     }

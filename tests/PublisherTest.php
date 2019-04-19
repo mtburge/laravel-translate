@@ -2,9 +2,9 @@
 
 namespace itsmattburgess\LaravelTranslate\Tests;
 
+use Orchestra\Testbench\TestCase;
 use Illuminate\Filesystem\Filesystem;
 use itsmattburgess\LaravelTranslate\Publisher;
-use Orchestra\Testbench\TestCase;
 
 class PublisherTest extends TestCase
 {

@@ -3,16 +3,31 @@
 namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class Publisher
 {
+    /**
+     * @var Filesystem
+     */
     private $disk;
 
+    /**
+     * @param Filesystem $disk
+     */
     public function __construct(Filesystem $disk)
     {
         $this->disk = $disk;
     }
 
+    /**
+     * Publishes the translated string to the laravel json language file.
+     *
+     * @param $original
+     * @param $translated
+     * @param $lang
+     * @throws FileNotFoundException
+     */
     public function publish($original, $translated, $lang)
     {
         $path = resource_path('lang/' . $lang . '.json');
@@ -26,6 +41,11 @@ class Publisher
         $this->disk->put($path, json_encode($currentTranslations, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
     }
 
+    /**
+     * Creates the directory and language file if they do not exist.
+     *
+     * @param $path
+     */
     private function prepareFilesystem($path): void
     {
         // Create the directory if it doesn't exist

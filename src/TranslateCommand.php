@@ -3,6 +3,7 @@
 namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use itsmattburgess\LaravelTranslate\Contracts\InvalidLanguageCode;
 
 class TranslateCommand extends Command
@@ -29,6 +30,7 @@ class TranslateCommand extends Command
      * @param Publisher $publisher
      * @return mixed
      * @throws InvalidLanguageCode
+     * @throws FileNotFoundException
      */
     public function handle(MethodDiscovery $discovery, Translator $translator, Publisher $publisher)
     {
@@ -58,6 +60,12 @@ class TranslateCommand extends Command
         $this->info('Your translation files have been updated successfully.');
     }
 
+    /**
+     * Validates all target languages are valid ISO639-1 codes.
+     *
+     * @param $codes
+     * @throws InvalidLanguageCode
+     */
     private function validateLanguageCodes($codes)
     {
         foreach ($codes as $language) {

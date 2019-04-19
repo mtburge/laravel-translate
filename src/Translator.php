@@ -6,26 +6,45 @@ use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
 class Translator
 {
+    /**
+     * @var TranslationService
+     */
     private $service;
 
+    /**
+     * @param TranslationService $service
+     */
     public function __construct(TranslationService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * Translate the given string to the specified language.
+     *
+     * @param string $text
+     * @param string $target
+     * @return string|null
+     */
     public function translate(string $text, string $target): ?string
     {
         $translated = '';
+
+        /**
+         * The text is split into segments so that any parameters are not translated.
+         */
         $segments = preg_split('/(:[\w\d\s]+)/imu', $text, 0, PREG_SPLIT_DELIM_CAPTURE);
 
         foreach ($segments as $segment) {
-            // parameters are not translated, and are simply added back to the string in their original position.
+            /**
+             * If a parameter is found, we go ahead and add that to the string
+             * and continue so that it is not translated.
+             */
             if (substr($segment, 0, 1) === ':') {
                 $translated .= $segment;
                 continue;
             }
 
-            // Lets translate
             $translated .= $this->service->translate(trim($segment), $target) . ' ';
         }
 

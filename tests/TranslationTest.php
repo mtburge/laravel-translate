@@ -2,16 +2,13 @@
 
 namespace itsmattburgess\LaravelTranslate\Tests;
 
-use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
-use itsmattburgess\LaravelTranslate\Translator;
 use Orchestra\Testbench\TestCase;
-use itsmattburgess\LaravelTranslate\MethodDiscovery;
+use itsmattburgess\LaravelTranslate\Translator;
 use itsmattburgess\LaravelTranslate\TranslationServiceProvider;
+use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
 class TranslationTest extends TestCase
 {
-    private $discovery;
-
     protected function getPackageProviders($app)
     {
         return [TranslationServiceProvider::class];

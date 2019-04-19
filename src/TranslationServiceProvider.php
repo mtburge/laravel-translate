@@ -4,11 +4,14 @@ namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use itsmattburgess\LaravelTranslate\Contracts\InvalidServiceException;
 use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
+use itsmattburgess\LaravelTranslate\Contracts\InvalidServiceException;
 
 class TranslationServiceProvider extends ServiceProvider
 {
+    /**
+     * Boots the service provider
+     */
     public function boot()
     {
         $this->publishes([
@@ -22,6 +25,9 @@ class TranslationServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * Registers the service provider.
+     */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/translate.php', 'translate');
@@ -29,6 +35,9 @@ class TranslationServiceProvider extends ServiceProvider
         $this->registerServices();
     }
 
+    /**
+     * Registers services used by this package.
+     */
     public function registerServices()
     {
         $this->app->singleton(MethodDiscovery::class, function () {

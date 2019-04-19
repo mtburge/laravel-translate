@@ -2,13 +2,9 @@
 
 namespace itsmattburgess\LaravelTranslate\Tests;
 
-use Illuminate\Filesystem\Filesystem;
-use itsmattburgess\LaravelTranslate\Contracts\InvalidServiceException;
-use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
-use itsmattburgess\LaravelTranslate\Publisher;
-use itsmattburgess\LaravelTranslate\TranslateCommand;
-use itsmattburgess\LaravelTranslate\TranslationServiceProvider;
 use Orchestra\Testbench\TestCase;
+use itsmattburgess\LaravelTranslate\TranslationServiceProvider;
+use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
 class TranslateCommandTest extends TestCase
 {
