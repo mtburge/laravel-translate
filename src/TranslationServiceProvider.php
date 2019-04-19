@@ -4,6 +4,7 @@ namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Google\Cloud\Translate\TranslateClient;
 use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 use itsmattburgess\LaravelTranslate\Exceptions\InvalidServiceException;
 
@@ -54,6 +55,10 @@ class TranslationServiceProvider extends ServiceProvider
             }
 
             return app()->make($service);
+        });
+
+        $this->app->singleton(TranslateClient::class, function () {
+            return new TranslateClient(config('translate.services.google'));
         });
     }
 }

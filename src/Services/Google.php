@@ -7,6 +7,13 @@ use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
 class Google implements TranslationService
 {
+    private $google;
+
+    public function __construct(TranslateClient $google)
+    {
+        $this->google = $google;
+    }
+
     /**
      * Translate a string using the Google Cloud Translate API.
      *
@@ -16,9 +23,7 @@ class Google implements TranslationService
      */
     public function translate(string $text, string $target): ?string
     {
-        $translate = new TranslateClient(config('translate.services.google'));
-
-        $translation = $translate->translate($text, [
+        $translation = $this->google->translate($text, [
             'target' => $target,
         ]);
 

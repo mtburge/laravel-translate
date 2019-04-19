@@ -3,7 +3,9 @@
 namespace itsmattburgess\LaravelTranslate\Tests;
 
 use Orchestra\Testbench\TestCase;
+use Google\Cloud\Translate\TranslateClient;
 use itsmattburgess\LaravelTranslate\Translator;
+use itsmattburgess\LaravelTranslate\Services\Google;
 use itsmattburgess\LaravelTranslate\TranslationServiceProvider;
 use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
@@ -62,4 +64,18 @@ class TranslationTest extends TestCase
         $this->assertEquals('Bonjour :name. Comment vas-tu?', $translation);
     }
 
+    /**
+     * @test
+     */
+    public function it_should_call_the_google_translate_api()
+    {
+        $googleMock = \Mockery::mock(TranslateClient::class);
+        $googleMock->shouldReceive('translate')->once()->andReturn(['text' => 'bonjour']);
+        $this->app->singleton(TranslateClient::class, function () use ($googleMock) {
+            return $googleMock;
+        });
+
+        $google = app()->make(Google::class);
+        $google->translate('hello', 'fr');
+    }
 }
