@@ -50,4 +50,14 @@ class Translator
 
         return trim($translated);
     }
+
+    /**
+     * Returns the service bound at provider registration.
+     *
+     * @return TranslationService
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
 }

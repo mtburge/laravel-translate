@@ -5,7 +5,7 @@ namespace itsmattburgess\LaravelTranslate;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
-use itsmattburgess\LaravelTranslate\Contracts\InvalidServiceException;
+use itsmattburgess\LaravelTranslate\Exceptions\InvalidServiceException;
 
 class TranslationServiceProvider extends ServiceProvider
 {
@@ -40,12 +40,12 @@ class TranslationServiceProvider extends ServiceProvider
      */
     public function registerServices()
     {
-        $this->app->singleton(MethodDiscovery::class, function () {
+        $this->app->bind(MethodDiscovery::class, function () {
             $config = $this->app['config']['translate'];
             return new MethodDiscovery(new Filesystem, $config['paths'], $config['methods']);
         });
 
-        $this->app->singleton(TranslationService::class, function () {
+        $this->app->bind(TranslationService::class, function () {
             $config = $this->app['config']['translate'];
             $service = 'itsmattburgess\LaravelTranslate\Services\\' . ucwords($config['driver']);
 

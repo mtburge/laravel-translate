@@ -4,7 +4,7 @@ namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use itsmattburgess\LaravelTranslate\Contracts\InvalidLanguageCode;
+use itsmattburgess\LaravelTranslate\Exceptions\InvalidLanguageCode;
 
 class TranslateCommand extends Command
 {

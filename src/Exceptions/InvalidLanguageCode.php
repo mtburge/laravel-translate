@@ -1,6 +1,6 @@
 <?php
 
-namespace itsmattburgess\LaravelTranslate\Contracts;
+namespace itsmattburgess\LaravelTranslate\Exceptions;
 
 use Exception;
 
