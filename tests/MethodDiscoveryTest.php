@@ -29,7 +29,6 @@ class MethodDiscoveryTest extends TestCase
             'trans',
             '__'
         ]);
-
     }
 
     /**

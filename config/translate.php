@@ -57,5 +57,19 @@ return [
     'paths' => [
         app_path(),
         resource_path()
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Target languages
+    |--------------------------------------------------------------------------
+    |
+    | Which languages would you like to translate your application into?
+    | Languages must be specified as ISO 639-1 codes. For example
+    | English = en, French = fr
+    |
+    */
+    'targetLanguages' => [
+        'fr'
     ]
 ];

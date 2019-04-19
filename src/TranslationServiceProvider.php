@@ -4,6 +4,8 @@ namespace itsmattburgess\LaravelTranslate;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use itsmattburgess\LaravelTranslate\Contracts\InvalidServiceException;
+use itsmattburgess\LaravelTranslate\Contracts\TranslationService;
 
 class TranslationServiceProvider extends ServiceProvider
 {
@@ -12,19 +14,19 @@ class TranslationServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/translate.php' => config_path('translate.php'),
         ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                TranslateCommand::class
+            ]);
+        }
     }
 
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/translate.php', 'translate');
 
-        $this->registerCommands();
         $this->registerServices();
-    }
-
-    public function registerCommands()
-    {
-
     }
 
     public function registerServices()
@@ -32,6 +34,17 @@ class TranslationServiceProvider extends ServiceProvider
         $this->app->singleton(MethodDiscovery::class, function () {
             $config = $this->app['config']['translate'];
             return new MethodDiscovery(new Filesystem, $config['paths'], $config['methods']);
+        });
+
+        $this->app->singleton(TranslationService::class, function () {
+            $config = $this->app['config']['translate'];
+            $service = 'itsmattburgess\LaravelTranslate\Services\\' . ucwords($config['driver']);
+
+            if (! class_exists($service)) {
+                throw new InvalidServiceException('Translation service "' . $config['driver'] . '" is not available');
+            }
+
+            return app()->make($service);
         });
     }
 }

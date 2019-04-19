@@ -23,17 +23,19 @@ class Publisher
 
         $currentTranslations[$original] = $translated;
 
-        $this->disk->put($path, json_encode($currentTranslations));
+        $this->disk->put($path, json_encode($currentTranslations, JSON_PRETTY_PRINT));
     }
 
     private function prepareFilesystem($path): void
     {
         // Create the directory if it doesn't exist
-        $this->disk->makeDirectory(resource_path('lang/'));
+        if (! $this->disk->isDirectory(resource_path('lang/'))) {
+            $this->disk->makeDirectory(resource_path('lang/'));
+        }
 
         // Create the translation definition if it doesn't exist
         if (! $this->disk->exists($path)) {
-            $this->disk->put('{}', $path);
+            $this->disk->put($path, '{}');
         }
     }
 }
