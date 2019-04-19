@@ -1,0 +1,33 @@
+{
+    "name": "itsmattburgess/laravel-translate",
+    "description": "Populate laravel translation files using services such as Google Translate",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "translations",
+        "translate",
+        "intl"
+    ],
+    "authors": [
+        {
+            "name": "Matt Burgess",
+            "email": "matt.burgess92@googlemail.com"
+        }
+    ],
+    "require": {
+        "ext-json"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "itsmattburgess\\LaravelTranslate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "itsmattburgess\\LaravelTranslate\\Tests\\": "tests/"
+        }
+    }
+}
