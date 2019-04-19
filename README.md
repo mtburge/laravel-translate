@@ -22,7 +22,7 @@ composer require --dev itsmattburgess/laravel-translate
 You can configure how this package is implemented using the config file in `config/translate.php`. You first need to publish
 this config file using the command below:
 ```
-php artisan vendor:publish --provider="itsmattburgess\LaravelTranslate\TranslateServiceProvider" --tag=config
+php artisan vendor:publish --provider="itsmattburgess\LaravelTranslate\TranslationServiceProvider"
 ```
 
 In this config file, you can specify the methods that contain your translation strings, the path where your methods should
