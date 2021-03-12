@@ -15,12 +15,12 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "ext-json": "*",
         "google/cloud-translate": "^1.2"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.5"
+        "orchestra/testbench": "^6"
     },
     "extra": {
         "laravel": {
